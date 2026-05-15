@@ -14,6 +14,7 @@ class Pessoa(BaseModel):
                            validators=[MinLengthValidator(11)],
                                        help_text="Insira um CPF válido",
                                        verbose_name="CPF")
+
     
     def clean(self):
         hoje = date.today()

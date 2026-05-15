@@ -14,6 +14,8 @@ class Aluno(Pessoa):
                                  verbose_name='Matrícula',
                                  help_text="Digite a matrícula do aluno"
                                  )
+    
+    
 
     def __str__(self):
         return f'{self.cod} - {self.nome}'
