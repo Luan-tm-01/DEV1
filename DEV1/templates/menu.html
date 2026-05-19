@@ -41,6 +41,19 @@
         </li>
       </ul>
 
+      {% if user.is_authenticated %}
+        <a class="btn btn-outline-info" role="button" href="{% url 'perfil' %}">
+        <i class="bi bi-person"> {{ user.username.upper }}</i></a>
+        <div class="me-2"></div>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+          <button type="submit" class="btn btn-outline-danger">
+            <i class="bi bi-box-arrow-left"></i> Sair
+          </button>
+        </form>
+      {% else %}
+        <a class="btn btn-outline-primary" role="button" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"> Login</i></a>
+      {% endif %}
 
       <form class="d-flex" role="search" action="{% url 'busca' %}" method="get">
         {% csrf_token %}
