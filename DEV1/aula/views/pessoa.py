@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from aula.models import Pessoa
 from aula.forms import PessoaForm
 
-
+@login_required(login_url=reverse_lazy("login"))
 def listar(request):
     pessoas = Pessoa.objects.all()
     contexto = {

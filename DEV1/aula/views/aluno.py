@@ -1,8 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from aula.models import Aluno
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class AlunoListarView(View):
+class AlunoListarView(LoginRequiredMixin, View):
+    raise_exception = True
+    permission_required = "aula.view_aluno"
+   
     @staticmethod
     def get(request):
         alunos = Aluno.objects.all()
@@ -22,7 +26,9 @@ class AlunoLerView(View):
 
         return render(request, "aluno/ler.html", contexto)
     
-class AlunoDeletarView(View):
+class AlunoDeletarView(LoginRequiredMixin, View):
+    raise_exception = True
+    permission_required = "aula.deletar_aluno"
     @staticmethod
     def get(request, id):
         aluno = get_object_or_404(Aluno,id=id)
