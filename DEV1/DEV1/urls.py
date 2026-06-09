@@ -14,5 +14,6 @@ urlpatterns = [
     path("busca/classe/", BuscarView.as_view(), name="busca"),
     path("contas/login/", auth_views.LoginView.as_view(template_name="contas/login.html", authentication_form="" )),
     path("contas/", include('django.contrib.auth.urls')),
-    path("contas/perfil", PerfilView.as_view(), name="perfil")
+    path("contas/perfil", PerfilView.as_view(), name="perfil"),
+    path("services/", include("services.urls")),
 ]
