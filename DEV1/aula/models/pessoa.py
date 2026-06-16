@@ -15,7 +15,6 @@ class Pessoa(BaseModel):
                                        help_text="Insira um CPF válido",
                                        verbose_name="CPF")
 
-    
     def clean(self):
         hoje = date.today()
         if self.data_nascimento > hoje:
