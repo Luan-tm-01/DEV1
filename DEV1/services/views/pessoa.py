@@ -1,10 +1,11 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView,Response
 from rest_framework import status
+from services.views import BaseSecurity
 from aula.models import Pessoa
 from services.serializers import PessoaMinimoSerializer, PessoaCompleteSerializer
 
-class PessoaSimplesService(APIView):
+class PessoaSimplesService(BaseSecurity, APIView):
     queryset = Pessoa.objects.all()
     serializer_class = PessoaMinimoSerializer 
 
@@ -19,7 +20,7 @@ class PessoaSimplesService(APIView):
 
         return Response(serializador.data)
     
-class PessoaService(APIView):
+class PessoaService(BaseSecurity, APIView):
     serializer_class = PessoaCompleteSerializer
     query_set = Pessoa.objects.all()
 
